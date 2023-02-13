@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thay đổi thông tin</title>
+    <link rel="stylesheet" href="/css/update.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="contact" action="/update-user" method="post">
+            <h3><b>Chỉnh sửa thông tin</b></h3>
+            <h4><b>Lưu ý: Nhập đúng số điện thoại để chúng tôi có thể liên hệ với bạn</b></h4>
+            <fieldset>
+                <input placeholder="Họ và tên" type="text" name="fullName" value="<%= dataUser.fullName %>" required
+                    autofocus>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Email" type="email" name="email" value="<%= dataUser.email %>" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Số điện thoại" type="tel" name="phoneNum" value="<%= dataUser.phoneNum %>" required>
+            </fieldset>
+            <fieldset>
+                <label for="" style="padding-right: 20px;font-size: 20px"><b>LOẠI PHÒNG</b></label>
+                <input name="Type" value="<%= dataUser.Type %>" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Ngày đặt phòng" name="Date" type="date" value="<%= dataUser.Date %>" required>
+            </fieldset>
+            <fieldset>
+                <textarea placeholder="Chú thích thêm" non-required></textarea>
+            </fieldset>
+            <div>
+                <input type="text" value="<%= dataUser.id %>" hidden name="id" />
+            </div>
+            <fieldset>
+                <button name="submit" type="submit" id="contact-submit">Cập nhật thông tin</button>
+            </fieldset>
+        </form>
+
+
+    </div>
+</body>
+
+</html>

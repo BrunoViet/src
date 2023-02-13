@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin đặt phòng</title>
+    <link rel="stylesheet" href="./css/info.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="contact" action="/creat-new-user" method="post">
+            <h3><b>Thông tin đặt phòng</b></h3>
+            <h4>Liên hệ với chúng tôi ngay qua HOTLINE: 0123456789</h4>
+            <fieldset>
+                <input placeholder="Họ và tên" type="text" tabindex="1" name="fullName" required autofocus>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Email" type="email" tabindex="2" name="email" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Số điện thoại" type="tel" tabindex="3" name="phoneNum" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Loại phòng: Thường hoặc VIP " type="text" tabindex="4" name="Type" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Ngày đặt phòng" type="date" name="Date" required>
+            </fieldset>
+            <fieldset>
+                <textarea placeholder="Chú thích thêm" tabindex="5" non-required></textarea>
+            </fieldset>
+            <fieldset>
+                <button onclick="myFunction()" name="submit" type="submit" id="contact-submit"><b>Gửi thông
+                        tin</b></button>
+                <script>
+                    function myFunction() {
+                        alert("Đã nhận thông tin đặt phòng. Chúng tôi sẽ xác nhận yêu cầu của bạn trong thời gian sớm nhất");
+                    }
+                </script>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <h1 hidden>
+            <%= dataUser %>
+        </h1>
+        <h1 style="margin-left: 20px; color: red;"><b> Thông tin khách hàng </b></h1>
+        <div class="w3-container">
+            <table class="w3-table-all w3-hoverable">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>STT</th>
+                        <th>Họ và tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Loại phòng</th>
+                        <th>Ngày đặt phòng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+        </div>
+        <div>
+            <% for(let i=0; i < dataUser.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= dataUser[i].id %>
+                    </td>
+                    <td>
+                        <%= dataUser[i].fullName %>
+                    </td>
+                    <td>
+                        <%= dataUser[i].email %>
+                    </td>
+                    <td>
+                        <%= dataUser[i].phoneNum %>
+                    </td>
+                    <td>
+                        <%= dataUser[i].Type %>
+                    </td>
+                    <td>
+                        <%= dataUser[i].Date %>
+                    </td>
+                    <td>
+                        <form action="/edit-user/<%= dataUser[i].id %>" method="GET">
+                            <button type="submit">Chỉnh sửa</button>
+                        </form>
+                        <form action="/delete" method="POST">
+                            <input type="text" hidden value="<%= dataUser[i].id %>" name="userId">
+                            <button onclick="Delete()" type="submit">Xóa</button>
+                            <script>
+                                function Delete() {
+                                    alert('Xóa thành công');
+                                }
+                            </script>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+                    </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
